@@ -31,9 +31,9 @@ const SignUpForm = (props) => {
       <h2>Sign Up</h2>
       { error && <p>{ error }</p> }
       <form onSubmit={handleSubmit}>
-        <input placeholder="username" value={createUserName}
+        <input placeholder="create a username" value={createUserName}
           onChange={(event) => {setCreateUserName(event.target.value)}} />
-        <input placeholder="password" value={createPassword}
+        <input placeholder="create a password" value={createPassword}
           onChange={(event) => {setCreatePassword(event.target.value)}} />
         <button>Submit</button>
       </form>

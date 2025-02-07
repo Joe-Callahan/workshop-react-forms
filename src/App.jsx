@@ -7,7 +7,7 @@ const App = () => {
 
   return (
     <>
-      <h1>Asadude</h1>
+      <h1>Create Your Account</h1>
       <SignUpForm setToken={setToken}/>
       <Authenticate token={token}/>
     </>

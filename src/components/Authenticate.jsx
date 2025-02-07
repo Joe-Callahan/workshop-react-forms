@@ -29,7 +29,7 @@ const Authenticate = (props) => {
   return (
     <>
       <h2>Authenticate</h2>
-      { successMessage && <p>Congratulations, { userName }! { successMessage }</p>}
+      { successMessage && <p>Welcome, { userName }! { successMessage }</p>}
       { error && <p>{ error }</p> }
       <button onClick={ handleClick }>Authenticate Token</button>
     </>

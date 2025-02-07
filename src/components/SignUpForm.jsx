@@ -1,17 +1,40 @@
 import { useState } from 'react'
 
-const [loginUserName, setLoginUserName] = useState('');
-const [loginPassword, setLoginPassword] = useState('');
-const [loginError, setLoginError] = useState(null);
+const SignUpForm = (props) => {
+  const [createUserName, setCreateUserName] = useState('');
+  const [createPassword, setCreatePassword] = useState('');
+  const [error, setError] = useState(null);
 
-const SignUpForm = () => {
+  const handleSubmit = async(event) => {
+    event.preventDefault();
+    try{
+      const response = await fetch ('https://fsa-jwt-practice.herokuapp.com/signup', {
+        method: 'POST',
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          username: createUserName,
+          password: createPassword
+        })
+      });
+      const createAccountObject = await response.json();
+      props.setToken(createAccountObject.token);
+
+    } catch(error) {
+    setError(error.message);
+    }
+} 
+
   return (
-    // Step 8***************
     <>
       <h2>Sign Up</h2>
-      <form>
-        <input placeholder="Username" />
-        <input placeholder="Password" />
+      { error && <p>{ error }</p> }
+      <form onSubmit={handleSubmit}>
+        <input placeholder="username" value={createUserName}
+          onChange={(event) => {setCreateUserName(event.target.value)}} />
+        <input placeholder="password" value={createPassword}
+          onChange={(event) => {setCreatePassword(event.target.value)}} />
         <button>Submit</button>
       </form>
     </>
